@@ -33,9 +33,23 @@
 
         <div class="tools">
 
-          <div class="box">
+          <div class="box" id="box_vis">
+            <label for="chart_type">Select Visualization:</label>
+            <select id="chart_type" name="chart_type" onchange="change()">
+              <option value="vis1">Full time equivalence across sectors and type of R&D</option>
+              <option value="vis2">Sector wise FTE trend from 2010 to 2018</option>
+            </select>
+          </div>
+
+          <div class="box" id="box_year">
             <label for="year">Select Year:</label>
             <select id="year" name="year" onchange="change()"></select>
+          </div>
+
+          <div class="box" id="box_sector">
+            <label for="sector">Select Sector:</label>
+            <select id="sector" name="sector" onchange="change()">
+            </select>
           </div>
 
         </div>
