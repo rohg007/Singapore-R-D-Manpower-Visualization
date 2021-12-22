@@ -1,0 +1,67 @@
+header {
+  padding: 10px;
+  text-align: center;
+  background-image: linear-gradient(rgb(51, 153, 255), rgb(204, 229, 255));
+  color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.ps {
+  margin: 0em 3em 1em 3em;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.box {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.box select {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: white;
+  color: black;
+  padding: 12px;
+  margin-top: 10px;
+  width: 250px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+#drawspace {
+  margin: "10px";
+  background-color: white;
+}
+
+.box select option {
+  padding: 30px;
+}
+
+.tools {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.visualization {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  font-family: "Trebuchet MS";
+  display: flex;
+  justify-content: center;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+#drawspace {
+  padding: 10px;
+}

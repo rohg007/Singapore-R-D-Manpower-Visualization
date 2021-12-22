@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Research and Development Manpower Full Time Equivalence by Sector
+    </title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        Research and Development Manpower Full Time Equivalence by Sector in
+        Singapore
+      </h1>
+
+      <p class="ps">
+        Visualize and analyse sector wise, year wise, manpower wise full time
+        equivalance data in Research and Development in Singapore. One full-time
+        equivalence (FTE) unit may be thought of as one person-year. A person
+        who spends 30% of his time on R&D and the rest on other activities
+        during the one-year reporting period should be considered as 0.3 FTE. If
+        a fulltime R&D worker is employed for only six months during the one
+        year reporting period, this results in a 0.5 FTE
+      </p>
+    </header>
+    <main>
+      <div class="visualization">
+        <div>
+          <svg id="drawspace" height="900" width="900" />
+        </div>
+
+        <div class="tools">
+
+          <div class="box">
+            <label for="year">Select Year:</label>
+            <select id="year" name="year" onchange="change()"></select>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+    <script src="d3.min.js"></script>
+    <script src="visualization.js"></script>
+  </body>
+</html>
