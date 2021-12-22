@@ -28,6 +28,10 @@ function change() {
     hideElement("box_year");
     showElement("box_sector");
     drawLineChart(getDataBySector(selectedSector), selectedSector);
+  } else if (chartType === "vis3") {
+    hideElement("box_sector");
+    showElement("box_year");
+    drawPieChart(getDataByManpowerType(selectedYear), selectedYear);
   }
 }
 
@@ -115,7 +119,7 @@ function drawBarChart(appData, year) {
 
 function drawLineChart(appData, sector) {
   d3.selectAll("svg > *").remove();
-  console.log(appData);
+
   drawspace
     .append("text")
     .attr("transform", "translate(0,0)")
@@ -161,8 +165,7 @@ function drawLineChart(appData, sector) {
     .attr("stroke", "black")
     .text("Full-Time Equivalence");
 
-  g
-    .append("path")
+  g.append("path")
     .datum(appData)
     .attr("fill", "none")
     .attr("stroke", "steelblue")
@@ -174,6 +177,48 @@ function drawLineChart(appData, sector) {
         .x((d) => xScale(parseDate(d.year)))
         .y((d) => yScale(d.fte))
     );
+}
+
+function drawPieChart(appData, year) {
+  //TODO: Draw Pie Chart Based on Type on Manpower
+  d3.selectAll("svg > *").remove();
+
+  drawspace
+    .append("text")
+    .attr("transform", "translate(0,0)")
+    .attr("x", 50)
+    .attr("y", 50)
+    .attr("font-size", "24px")
+    .text("FTE contribution by type of R&D Manpower in " + year);
+
+  let g = drawspace
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + 400 + ")");
+
+  let types = appData.map((d) => d.type_of_rnd_manpower);
+
+  let color = d3
+    .scaleOrdinal(d3.schemeCategory10)
+    .domain(types);
+
+  const pie = d3.pie();
+
+  var arc = d3
+    .arc()
+    .innerRadius(0)
+    .outerRadius(Math.min(width, height) / 2);
+
+  var arcs = g
+    .selectAll("arc")
+    .data(pie(appData.map((d) => d.fte)))
+    .enter()
+    .append("g")
+    .attr("class", "arc");
+  console.log(color("PhD"));
+  arcs
+    .append("path")
+    .attr("fill", (d, i) => color(types[i]))
+    .attr("d", arc);
 }
 
 function loadYears() {
@@ -205,13 +250,29 @@ function getDataBySector(sector) {
       else sectorData[year] = parseFloat(d.fte);
     }
   }
-  console.log(sectorData);
-  const arr = Object.keys(sectorData).map((key) => ({
+  return Object.keys(sectorData).map((key) => ({
     year: key,
     fte: sectorData[key],
   }));
-  console.log(arr);
-  return arr;
+}
+
+function getDataByManpowerType(year) {
+  const yearData = data.filter((d) => d.year === year);
+  let typeData = {};
+
+  for (let d of yearData) {
+    let trm = d.type_of_rnd_manpower;
+    if (trm in typeData) typeData[trm] += parseFloat(d.fte);
+    else typeData[trm] = parseFloat(d.fte);
+  }
+
+  const test = Object.keys(typeData).map((key) => ({
+    type_of_rnd_manpower: key,
+    fte: typeData[key],
+  }));
+
+  console.log(test);
+  return test;
 }
 
 function hideElement(element) {
